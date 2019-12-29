@@ -9,13 +9,14 @@ An example workflow that uses [GitHub Actions](https://help.github.com/en/catego
 ```bash
 export GHUSER=<github user account where your fork lives>
 export GHREPO=example-actions-flux-eks
+export GHORG=<github org, or username (again) if repo does not belong to an org>
 
 kubectl create ns flux
 
 fluxctl install \
     --git-user=${GHUSER} \
     --git-email=${GHUSER}@users.noreply.github.com \
-    --git-url=git@github.com:${GHUSER}/${GHREPO} \
+    --git-url=git@github.com:${GHORG}/${GHREPO} \
     --git-path=manifests \
     --namespace=flux | kubectl apply -f -
 ```
